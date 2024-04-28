@@ -9,7 +9,7 @@ public class RoomNotAvailableException extends RuntimeException {
     }
 
     public RoomNotAvailableException(RoomReservation roomReservation) {
-        super("Room " + roomReservation.getRoom().getName() + " not available in the given time period: " + roomReservation.getStartDateTime() + " - " + roomReservation.getStartDateTime().plusMinutes(roomReservation.getDurationMinutes()));
+        super("Room " + roomReservation.getRoom().getName() + " not available in the given time period: " + roomReservation.getStartDateTime() + " - " + roomReservation.getEndDateTime());
     }
     
 }

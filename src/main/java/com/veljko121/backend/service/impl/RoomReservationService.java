@@ -29,7 +29,7 @@ public class RoomReservationService extends CRUDService<RoomReservation, Integer
 
     private Boolean overlaps(RoomReservation reservation, LocalDateTime startDateTime, Integer durationMinutes) {
         var reservationStartDateTime = reservation.getStartDateTime();
-        var reservationEndDateTime = reservationStartDateTime.plusMinutes(reservation.getDurationMinutes());
+        var reservationEndDateTime = reservation.getEndDateTime();
         var endDateTime = startDateTime.plusMinutes(durationMinutes);
 
         if ((startDateTime.isAfter(reservationStartDateTime) || startDateTime.isEqual(reservationStartDateTime)) && startDateTime.isBefore(reservationEndDateTime) ||

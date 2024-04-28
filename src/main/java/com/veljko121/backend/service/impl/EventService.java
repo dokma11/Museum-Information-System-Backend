@@ -1,5 +1,6 @@
 package com.veljko121.backend.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class EventService extends CRUDService<Event, Integer> implements IEventS
             throw new RoomNotAvailableException(roomReservation);
         }
 
-        roomReservation.setDurationMinutes(entity.getDurationMinutes());
+        LocalDateTime endDateTime = entity.getStartDateTime().plusMinutes(entity.getDurationMinutes());
+        roomReservation.setEndDateTime(endDateTime);
         roomReservation.setStartDateTime(entity.getStartDateTime());
         roomReservation = roomReservationService.save(roomReservation);
 

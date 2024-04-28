@@ -1,23 +1,21 @@
 package com.veljko121.backend.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
-public class RoomReservation {
-
+public class ItemReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @ManyToOne
     @NotNull
-    private Room room;
+    private Item item;
 
     @Column
     private LocalDateTime startDateTime;
@@ -26,10 +24,6 @@ public class RoomReservation {
     private LocalDateTime endDateTime; // Changed from durationMinutes to endDateTime
 
     @ManyToOne
-    @JoinColumn(name = "exhibition_id", nullable = true)
-    private Exhibition exhibition;
-
-    @OneToMany(mappedBy = "roomReservation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemReservation> itemReservations;
-
+    @JoinColumn(name = "room_reservation_id")
+    private RoomReservation roomReservation;
 }
